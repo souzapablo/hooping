@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Hooping.Api.Data.Migrations
+namespace Hooping.Api.Migrations
 {
     [DbContext(typeof(HoopingDbContext))]
-    [Migration("20240718195248_v2-User")]
-    partial class v2User
+    [Migration("20240718222357_v1-InitialMigration")]
+    partial class v1InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,7 +115,10 @@ namespace Hooping.Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Hooping.Api.Entities.Product", b =>

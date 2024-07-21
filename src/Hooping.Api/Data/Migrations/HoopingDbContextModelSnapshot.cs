@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Hooping.Api.Data.Migrations
+namespace Hooping.Api.Migrations
 {
     [DbContext(typeof(HoopingDbContext))]
     partial class HoopingDbContextModelSnapshot : ModelSnapshot
@@ -112,7 +112,10 @@ namespace Hooping.Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Hooping.Api.Entities.Product", b =>

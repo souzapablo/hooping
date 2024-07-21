@@ -8,6 +8,7 @@ public class HoopingDbContext(
     DbContextOptions<HoopingDbContext> options) 
     : DbContext(options)
 {
+    public DbSet<User> Users { get; set; } = null!;
     public DbSet<Supplier> Suppliers { get; set; } = null!;
     public DbSet<Product> Products { get; set; } = null!;
 

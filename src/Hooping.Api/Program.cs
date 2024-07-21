@@ -1,5 +1,7 @@
 using Hooping.Api.Data;
+using Hooping.Api.Endpoints;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +14,13 @@ builder.Services
     config.UseNpgsql(connectionString);
 });
 
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+});
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapEndpoints();
 
 app.Run();

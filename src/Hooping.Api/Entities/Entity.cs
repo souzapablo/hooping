@@ -2,7 +2,7 @@
 public abstract class Entity : IEquatable<Entity>
 {
     public long Id { get; private init; }
-    public DateTime CreatedAt { get; private set; } = DateTime.Now;
+    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public bool IsDeleted { get; private set; }
 
     protected void Delete() => IsDeleted = true;

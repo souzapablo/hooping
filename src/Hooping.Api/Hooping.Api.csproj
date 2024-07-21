@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
@@ -26,6 +28,10 @@
 
   <ItemGroup>
     <EditorConfigFiles Remove="D:\hooping\src\Hooping.Api\Data\Mappings\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hooping.Common\Hooping.Common.csproj" />
   </ItemGroup>
 
 </Project>

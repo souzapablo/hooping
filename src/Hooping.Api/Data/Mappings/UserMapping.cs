@@ -9,5 +9,8 @@ public class UserMapping : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasQueryFilter(u => !u.IsDeleted);
+
+        builder.HasIndex(u => u.Email)
+            .IsUnique();            
     }
 }
