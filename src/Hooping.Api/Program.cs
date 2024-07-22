@@ -1,25 +1,17 @@
-using Hooping.Api.Data;
+using Hooping.Api.Config;
 using Hooping.Api.Endpoints;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+using Hooping.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration
-    .GetConnectionString("DefaultConnection");
-
-builder.Services
-    .AddDbContext<HoopingDbContext>(config =>
-{
-    config.UseNpgsql(connectionString);
-});
-
-builder.Services.AddMediatR(config =>
-{
-    config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-});
+builder.AddDatabases();
+builder.AddServices();
+builder.AddDocumentation();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+    app.ConfigureDevEnvironment();
 
 app.MapEndpoints();
 

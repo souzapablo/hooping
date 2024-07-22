@@ -11,6 +11,12 @@ public class CreateUserEndpoint : IEndpoint
         app.MapPost("", HandleAsync);
     }
 
+    /// <summary>
+    /// Create a new user
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
     private static async Task<IResult> HandleAsync(
         ISender sender,
         CreateUserRequest request)
