@@ -20,7 +20,7 @@ public class CreateUserEndpoint : IEndpoint
         IUserHandler handler,
         CreateUserRequest request)
     {
-        var result = await handler.CreateUserAsync(request);
+        var result = await handler.CreateAsync(request);
 
         return result.IsSuccess
             ? Results.Created($"/v1/users/{result.Value}", result)

@@ -12,7 +12,7 @@ namespace Hooping.Api.Handlers;
 public class UserHandler(
     HoopingDbContext context) : IUserHandler
 {
-    public async Task<Result<long>> CreateUserAsync(CreateUserRequest request)
+    public async Task<Result<long>> CreateAsync(CreateUserRequest request)
     {
         var userExists = await context.Users
             .AnyAsync(u => u.Email.Equals(request.Email.ToLower()));
