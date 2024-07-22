@@ -1,6 +1,5 @@
-﻿using Hooping.Api.Features.Users.Commands.Create;
+﻿using Hooping.Common.Handlers;
 using Hooping.Common.Requests.User;
-using MediatR;
 
 namespace Hooping.Api.Endpoints.User;
 
@@ -14,14 +13,14 @@ public class CreateUserEndpoint : IEndpoint
     /// <summary>
     /// Create a new user
     /// </summary>
-    /// <param name="sender"></param>
+    /// <param name="handler"></param>
     /// <param name="request"></param>
     /// <returns></returns>
     private static async Task<IResult> HandleAsync(
-        ISender sender,
+        IUserHandler handler,
         CreateUserRequest request)
     {
-        var result = await sender.Send(new CreateUserCommand(request.Email, request.Password));
+        var result = await handler.CreateUserAsync(request);
 
         return result.IsSuccess
             ? Results.Created($"/v1/users/{result.Value}", result)

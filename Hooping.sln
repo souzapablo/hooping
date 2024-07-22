@@ -5,19 +5,16 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B1A38350-4D2B-4F04-979A-E7A86B50E074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hooping.Api", "src\Hooping.Api\Hooping.Api.csproj", "{33BF9EC9-C556-4861-9E97-F93195E86AFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hooping.Api", "src\Hooping.Api\Hooping.Api.csproj", "{33BF9EC9-C556-4861-9E97-F93195E86AFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hooping.Common", "src\Hooping.Common\Hooping.Common.csproj", "{AA6F5068-30ED-44B9-9A92-A5BBD00D9A64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hooping.Common", "src\Hooping.Common\Hooping.Common.csproj", "{AA6F5068-30ED-44B9-9A92-A5BBD00D9A64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hooping.Web", "src\Hooping.Web\Hooping.Web.csproj", "{B654EDAC-D48A-475E-9022-A1FC0465BF76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hooping.Web", "src\Hooping.Web\Hooping.Web.csproj", "{B654EDAC-D48A-475E-9022-A1FC0465BF76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{33BF9EC9-C556-4861-9E97-F93195E86AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,9 +30,15 @@ Global
 		{B654EDAC-D48A-475E-9022-A1FC0465BF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B654EDAC-D48A-475E-9022-A1FC0465BF76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{33BF9EC9-C556-4861-9E97-F93195E86AFE} = {B1A38350-4D2B-4F04-979A-E7A86B50E074}
 		{AA6F5068-30ED-44B9-9A92-A5BBD00D9A64} = {B1A38350-4D2B-4F04-979A-E7A86B50E074}
 		{B654EDAC-D48A-475E-9022-A1FC0465BF76} = {B1A38350-4D2B-4F04-979A-E7A86B50E074}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7530957-A8F0-4A98-9DA0-E01BFB1C0F40}
 	EndGlobalSection
 EndGlobal

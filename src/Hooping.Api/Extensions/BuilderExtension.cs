@@ -1,4 +1,6 @@
 ﻿using Hooping.Api.Data;
+using Hooping.Api.Handlers;
+using Hooping.Common.Handlers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -45,9 +47,6 @@ public static class BuilderExtension
 
     public static void AddServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddMediatR(options =>
-        {
-            options.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-        });
+        builder.Services.AddScoped<IUserHandler, UserHandler>();
     }
 }
