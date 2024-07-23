@@ -1,4 +1,5 @@
-﻿using Hooping.Api.Endpoints.User;
+﻿using Hooping.Api.Endpoints.Auth;
+using Hooping.Api.Endpoints.User;
 
 namespace Hooping.Api.Endpoints;
 
@@ -13,9 +14,14 @@ public static class Endpoints
             .WithTags("Health Check")
             .MapGet("/", () => new { message = "Hello World!" });
 
+        app.MapGroup("v1/auth")
+            .WithTags("Auth")
+            .MapEndpoint<LoginEndpoint>();
+
         app.MapGroup("v1/users")
             .WithTags("Users")
             .MapEndpoint<CreateUserEndpoint>();
+
     }
 
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)

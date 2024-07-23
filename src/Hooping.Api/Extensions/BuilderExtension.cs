@@ -1,11 +1,15 @@
-﻿using Hooping.Api.Data;
+﻿using Hooping.Api.Auth;
+using Hooping.Api.Data;
 using Hooping.Api.Handlers;
+using Hooping.Api.OptionsSetup;
 using Hooping.Common.Handlers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace Hooping.Api.Config;
+namespace Hooping.Api.Extensions;
 
 public static class BuilderExtension
 {
@@ -24,6 +28,31 @@ public static class BuilderExtension
                     Name = "Pablo Souza",
                     Email = "pablo.osouza@outlook.com",
                     Url = new Uri("https://github.com/souzapablo/")
+                }
+            });
+
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "JWT Authorization with Bearer scheme."
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                    Array.Empty<string>()
                 }
             });
 
@@ -48,5 +77,23 @@ public static class BuilderExtension
     public static void AddServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IUserHandler, UserHandler>();
+    }
+
+    public static void AddJwtAuthentication(this WebApplicationBuilder builder)
+    {
+        builder.Services.ConfigureOptions<JwtOptionsSetup>();
+        builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+
+        builder.Services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer();
+
+        builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+        builder.Services.AddScoped<IAuthHandler, AuthHandler>();
+    }
+
+    public static void AddSecurity(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddAuthorization();
     }
 }
