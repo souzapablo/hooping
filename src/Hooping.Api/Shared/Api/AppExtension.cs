@@ -1,4 +1,4 @@
-﻿namespace Hooping.Api.Extensions;
+﻿namespace Hooping.Api.Shared.Api;
 
 public static class AppExtension
 {

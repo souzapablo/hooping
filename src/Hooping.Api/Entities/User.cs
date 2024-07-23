@@ -1,9 +1,8 @@
-﻿namespace Hooping.Api.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class User(
-    string email,
-    string passwordHash) : Entity
+namespace Hooping.Api.Entities;
+
+public class User : IdentityUser<long>
 {
-    public string Email { get; private set; } = email;
-    public string PasswordHash { get; private set; } = passwordHash;
+    public List<IdentityRole<long>>? Roles { get; set; }
 }

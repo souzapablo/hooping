@@ -1,5 +1,6 @@
-﻿using Hooping.Api.Endpoints.Auth;
-using Hooping.Api.Endpoints.User;
+﻿using Hooping.Api.Endpoints.Identity;
+using Hooping.Api.Entities;
+using Hooping.Api.Shared.Api;
 
 namespace Hooping.Api.Endpoints;
 
@@ -14,13 +15,14 @@ public static class Endpoints
             .WithTags("Health Check")
             .MapGet("/", () => new { message = "Hello World!" });
 
-        app.MapGroup("v1/auth")
-            .WithTags("Auth")
-            .MapEndpoint<LoginEndpoint>();
+        endpoints.MapGroup("v1/identity")
+            .WithTags("Identity")
+            .MapIdentityApi<User>();
 
-        app.MapGroup("v1/users")
-            .WithTags("Users")
-            .MapEndpoint<CreateUserEndpoint>();
+        endpoints.MapGroup("v1/identity")
+            .WithTags("Identity")
+            .MapEndpoint<GetRolesEndpoint>()
+            .MapEndpoint<LogoutEndpoint>();
 
     }
 

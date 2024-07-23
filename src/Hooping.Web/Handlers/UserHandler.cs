@@ -1,5 +1,4 @@
-﻿using Hooping.Common.Handlers;
-using Hooping.Common.Requests.User;
+﻿using Hooping.Common.Requests.User;
 using Hooping.Common.Responses;
 
 namespace Hooping.Web.Handlers;

@@ -1,4 +1,4 @@
-﻿namespace Hooping.Api.Endpoints;
+﻿namespace Hooping.Api.Shared.Api;
 
 public interface IEndpoint
 {

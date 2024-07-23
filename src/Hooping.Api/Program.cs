@@ -1,5 +1,5 @@
 using Hooping.Api.Endpoints;
-using Hooping.Api.Extensions;
+using Hooping.Api.Shared.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,6 @@ builder.AddSecurity();
 builder.AddDatabases();
 builder.AddServices();
 builder.AddDocumentation();
-builder.AddJwtAuthentication();
 
 var app = builder.Build();
 
