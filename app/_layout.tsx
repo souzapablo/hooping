@@ -1,37 +1,47 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Drawer } from "expo-router/drawer";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
+  function icon(name: any) {
+    return (props: any) => (
+      <Ionicons
+        name={name}
+        size={18}
+        color={props.focused ? "#800000" : "#000"}
+      />
+    );
   }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer
+        screenOptions={{ drawerActiveTintColor: "#800000", headerShown: false }}
+      >
+        <Drawer.Screen
+          name="index"
+          options={{
+            drawerLabel: "Início",
+            title: "Gestão de artesanatos",
+            drawerIcon: icon("storefront-outline"),
+          }}
+        />
+        <Drawer.Screen
+          name="materiais"
+          options={{
+            drawerLabel: "Materiais",
+            title: "Materiais",
+            drawerIcon: icon("cart-outline"),
+          }}
+        />
+        <Drawer.Screen
+          name="pessoas"
+          options={{
+            drawerLabel: "Pessoas",
+            title: "Pessoas",
+            drawerIcon: icon("people-circle-outline"),
+          }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
   );
 }
